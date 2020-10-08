@@ -85,7 +85,7 @@ Resources:
 
 Outputs:
   IamRole:
-    Value: !Ref Role
+    Value: !GetAtt Role.Arn
 
   Function:
     Value: !Ref Function
