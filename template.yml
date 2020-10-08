@@ -82,3 +82,7 @@ Resources:
                 Action:
                   - "logs:*"
                 Resource: "*"
+
+Outputs:
+  IamRole:
+    Value: !Ref Role
