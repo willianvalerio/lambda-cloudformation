@@ -1,0 +1,79 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Lambda Function Template
+
+Parameters:
+
+  Runtime:
+    Type: String
+
+  Timeout:
+    Type: String
+    Description: Time for timeout in seconds
+    Default: 120
+
+  MemorySize:
+    Type: Number
+    Description: Size the memory for function
+    Default: 128
+
+  Versao:
+    Type: String
+
+  Env:
+    Type: String
+    Default: Dev
+
+  Handler:
+    Type: String
+
+  FunctionName:
+    Type: String
+  
+  BucketName:
+    Type: String
+
+  S3Key:
+    Type: String
+
+  Service:
+    Type: String
+
+
+Resources:
+  Function:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      FunctionName: !Ref FunctionName
+      Runtime: !Ref Runtime
+      Timeout: !Ref Timeout
+      MemorySize: !Ref MemorySize
+      Role: !GetAtt Role.Arn
+      Policies: AWSLambdaBasicExecutionRole
+      CodeUri:
+        Bucket: !Ref BucketName
+        Key: !Ref S3Key
+      Tags:
+        "env": !Ref Env
+        "service": !Ref Service
+
+  Role:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service: lambda.amazonaws.com
+          Action:
+            - 'sts:AssumeRole'
+      Path: "/"
+      Policies:
+        - PolicyName: !Ref FunctionName
+          PolicyDocument:
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  - "logs:*"
+                Resource: "*"
