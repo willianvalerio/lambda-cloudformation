@@ -89,3 +89,9 @@ Outputs:
 
   Function:
     Value: !Ref Function
+
+  Service:
+    Value: !Ref service
+
+  Env:
+    Value: !Ref Env
