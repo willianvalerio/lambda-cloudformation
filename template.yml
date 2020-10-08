@@ -16,7 +16,7 @@ Parameters:
     Description: Size the memory for function
     Default: 128
 
-  Versao:
+  Version:
     Type: String
     Default: 1.0
 
