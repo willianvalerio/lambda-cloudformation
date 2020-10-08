@@ -86,3 +86,6 @@ Resources:
 Outputs:
   IamRole:
     Value: !Ref Role
+
+  Function:
+    Value: !Ref Function
