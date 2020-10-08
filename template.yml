@@ -43,7 +43,7 @@ Resources:
   Function:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: index.handler
+      Handler: !Ref Handler
       FunctionName: !Ref FunctionName
       Runtime: !Ref Runtime
       Timeout: !Ref Timeout
